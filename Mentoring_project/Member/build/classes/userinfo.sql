@@ -1,0 +1,124 @@
+DROP TABLE USERINFO;
+
+CREATE TABLE USERINFO (
+		USERID VARCHAR2(20),
+		PASSWORD VARCHAR2(20),
+		NAME VARCHAR2(20),
+		EMAIL VARCHAR2(40),
+		PHONE VARCHAR2(40),
+		CONSTRAINT USERINFO_PK PRIMARY KEY(USERID) 
+	);
+	
+	INSERT INTO USERINFO(USERID, PASSWORD, NAME, EMAIL, PHONE) values (song, song, song, songaverom, 01088194231);
+
+		-- 추가!!! 게시판 정보
+DROP TABLE TB_BOARD_INFO;
+
+CREATE TABLE TB_BOARD_INFO (
+	BOARD_CODE VARCHAR2(20),	--테이블고유번호
+	WRITER VARCHAR2(20),	--게시글 쓴 사람 id
+	PW VARCHAR2(20),	--게시글에 해당되는 비밀번호(알아야 수정/삭제 가능)
+	SUBJECT VARCHAR2(100),	--게시글 제목
+	CONTENT VARCHAR2(4000),	--게시글 내용
+	REGDATE VARCHAR(20),	--게시글 등록 시간
+	READCOUNT NUMBER,	--게시글읽혀진 횟수
+	REPLYCOUNT NUMBER, --댓글 갯수
+	CONSTRAINT TB_BOARD_INFO_PK PRIMARY KEY(BOARD_CODE)
+);
+
+drop sequence board_seq;
+create sequence board_seq;
+
+--트리거...왜 생성이 되지않을까..? 교수님꼐 물어봐야지 일단 보드코드 손으로 적어서 만들쟈...
+--DROP TRIGGER board_trigger;
+--CREATE TRIGGER board_trigger BEFORE INSERT ON TB_BOARD_INFO FOR EACH ROW
+--BEGIN
+--	SELECT BOARD_SEQ.NEXTVAL INTO :new.BOARD_CODE FROM DUAL;
+--END;
+
+
+--TEST로 들어가진 게시판DB
+
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'songmyung', '1234', '지오디가 부릅니다  어머니는 짜장면이 싫다고오옹~', 
+'높고 높은 하늘이라 말들하지만 
+나는 나는 높은게 또 하나 있지 
+낳으시고 기르시는 어머님 은혜 
+푸른하늘 그 보다도 높은것 같애 
+
+넓고 넓은 바다라고 말들하지만 
+나는 나는 넓은게 또 하나 있지 
+사람되라 이르시는 어머님 은혜 
+푸른바다 그 보다도 넓은 것 같애', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'shm', '1234', '달려라 달려라 하니 달려~~',
+'난 있잖아 엄마가 세상에서 제일 좋아 하늘 땅 만큼 
+엄마가 보고싶음 달릴꺼야 두손 꼭 쥐고 
+달려라 달려라 달려라 하니(하니) 
+이세상 끝까지(끝까지) 달려라 하니(하니) 
+
+난 있잖아 슬픈 모습 보이는게 정말 싫어 약해지니까 
+외로와 눈물나면 달릴꺼야 바람처럼 
+달려라 달려라 달려라 하니(하니) 
+이세상 끝까지(끝까지) 달려라 하니(하니) 
+
+난 있잖아 내 별명 악바리가 맘에 들어 그래야 이기지 
+모두 모두 제치고 달릴꺼야 엄마 품으로 
+달려라 달려라 달려라 하니(하니) 
+이세상 끝까지(끝까지) 달려라 하니(하니)(하니) ', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'eunjijiji', '1234', '일기를 써봅니다~~~~',
+'세상 사람들 모두 정답을 알긴 할까 
+힘든 일은 왜 한번에 일어날까 
+
+나에게 실망한 하루 
+눈물이 보이기 싫어 의미 없이 밤 하늘만 바라봐 
+
+작게 열어둔 문틈 사이로 
+슬픔 보다 더 큰 외로움이 다가와 더 날
+
+*
+수고했어 오늘도 
+아무도 너의 슬픔에 관심 없대도 
+난 늘 응원해, 수고했어 오늘도 
+
+빛이 있다고 분명 있다고 
+믿었던 길마저 흐릿해져 점점 더 날
+
+수고했어 오늘도 (수고했어)
+아무도 너의 슬픔에 관심 없대도 
+난 늘 응원해, 수고했어 수고했어 수고했어 오늘도
+
+수고했어 오늘도 (수고했어)
+아무도 너의 슬픔에 관심 없대도 
+난 늘 응원해, 수고했어 오늘도 ', '2016-06-06 00:00', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user5', '1234', 'subject5', 'content5', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user6', '1234', 'subject6', 'content6', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user7', '1234', 'subject7', 'content7', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user8', '1234', 'subject8', 'content8', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user9', '1234', 'subject9', 'content9', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user10', '1234', 'subject10', 'content10', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user11', '1234', 'subject11', 'content11', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user12', '1234', 'subject12', 'content12', '2016-06-06', '0', '0');
+INSERT INTO TB_BOARD_INFO(BOARD_CODE, WRITER, PW, SUBJECT, CONTENT, REGDATE, READCOUNT, REPLYCOUNT) VALUES ('BOARD000' || BOARD_SEQ.NEXTVAL, 'user13', '1234', 'subject13', 'content13', '2016-06-06', '0', '0');
+
+--댓글시퀀스
+DROP SEQUENCE REPLY_SEQ;
+CREATE SEQUENCE REPLY_SEQ;
+
+--추가!!! 댓글정보
+DROP TABLE TB_REPLY_INFO CASCADE CONSTRAINT;
+CREATE TABLE TB_REPLY_INFO(
+	REPLY_CODE VARCHAR2(20),
+	BOARD_CODE  VARCHAR2(20),
+	REPLYWRITER VARCHAR2(20),
+	REPLYCONTENT VARCHAR2(200),
+	REPLYREGDATE VARCHAR(20),
+	CONSTRAINT TB_REPLY_INFO_PK PRIMARY KEY(REPLY_CODE)
+);
+
+--가짜DB
+INSERT INTO TB_REPLY_INFO(REPLY_CODE, BOARD_CODE, REPLYWRITER, REPLYCONTENT, REPLYREGDATE) VALUES ('REPLY000' || REPLY_SEQ.NEXTVAL, 'BOARD0001', 'songmyung', '동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 만세만세 만만세 만세 만세', '2016-06-06 12:10');
+INSERT INTO TB_REPLY_INFO(REPLY_CODE, BOARD_CODE, REPLYWRITER, REPLYCONTENT, REPLYREGDATE) VALUES ('REPLY000' || REPLY_SEQ.NEXTVAL, 'BOARD0001', 'id0103', '가나다라마바사^^ 아자차카타파핳ㅎ 파핳ㅎ 하하하핳하핳ㅎ!!!!!', '2016-06-06 12:10');
+INSERT INTO TB_REPLY_INFO(REPLY_CODE, BOARD_CODE, REPLYWRITER, REPLYCONTENT, REPLYREGDATE) VALUES ('REPLY000' || REPLY_SEQ.NEXTVAL, 'BOARD0001', 'admin', '어드민은 어드민꺼만 지울수 잇어여 sonymyung이는 송명이만 지울수 있지', '2016-06-16 12:10');
+INSERT INTO TB_REPLY_INFO(REPLY_CODE, BOARD_CODE, REPLYWRITER, REPLYCONTENT, REPLYREGDATE) VALUES ('REPLY000' || REPLY_SEQ.NEXTVAL, 'BOARD0002', 'admin', 'coententnen....', '2016-06-06 12:10');
+INSERT INTO TB_REPLY_INFO(REPLY_CODE, BOARD_CODE, REPLYWRITER, REPLYCONTENT, REPLYREGDATE) VALUES ('REPLY000' || REPLY_SEQ.NEXTVAL, 'BOARD0003', 'admin', 'coententnen....', '2016-06-06 12:10');
+INSERT INTO TB_REPLY_INFO(REPLY_CODE, BOARD_CODE, REPLYWRITER, REPLYCONTENT, REPLYREGDATE) VALUES ('REPLY000' || REPLY_SEQ.NEXTVAL, 'BOARD0003', 'admin', 'coententnen....', '2016-06-06 12:10');
+
